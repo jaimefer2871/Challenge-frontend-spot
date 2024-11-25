@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const axiosInt = axios.create({
-    baseURL: "http://localhost:8000/api/v1/",
+    baseURL: "http://oficina.eserviciosat.net:7000/api/v1/",
     headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
