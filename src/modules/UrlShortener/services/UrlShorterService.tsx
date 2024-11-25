@@ -20,8 +20,9 @@ export const saveUrl = async (data:DataRequestDto) => {
     let output = [];
     try {
         const response = await axios.post('urlshortener',data);
-        output = response.data.data;
+        output = response.data;
     } catch (error) {
+        output = error.response.data;
         console.log('ErrorSaveUrl', error)
     }
 
@@ -35,6 +36,18 @@ export const deleteUrl = async (id:number) => {
         output = response.data.data;
     } catch (error) {
         console.log('ErrorSaveUrl', error)
+    }
+
+    return output;
+}
+
+export const getUrl = async (id:number) => {
+    let output = [];
+    try {
+        const response = await axios.get(`urlshortener/${id}`);
+        output = response.data.data;
+    } catch (error) {
+        console.log('ErrorGetUrl', error)
     }
 
     return output;

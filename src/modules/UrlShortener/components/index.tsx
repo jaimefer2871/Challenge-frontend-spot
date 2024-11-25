@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import TableList from '../pages';
-import { getListShoterUrls, saveUrl, deleteUrl } from '../services/UrlShorterService';
+import { getListShoterUrls, saveUrl, deleteUrl, getUrl } from '../services/UrlShorterService';
 import { Container } from 'react-bootstrap';
 
 function UrlShortenerMain() {
@@ -27,11 +27,21 @@ function UrlShortenerMain() {
             },
             allowOutsideClick: () => !Swal.isLoading()
         }).then((result) => {
+
             if (result.isConfirmed) {
-                Swal.fire({
-                    title: 'Information',
-                    text: "the url has been shortened correctly"
-                });
+
+                if (result.value.code === 201) {
+                    Swal.fire({
+                        title: 'Information',
+                        text: "the url has been shortened correctly"
+                    });
+                } else {
+                    Swal.fire({
+                        title: 'Error',
+                        text: "the url has not been shortened correctly. Reason: " + JSON.stringify(result.value.errors)
+                    });
+                }
+
                 init();
             }
         });
@@ -69,17 +79,22 @@ function UrlShortenerMain() {
     }
 
     const openModalUrl = (id: number) => {
+        let data: any = null;
         MySwal.fire({
             title: "Open Url",
             text: "Begin open url",
-            timer: 2000,
+            timer: 3000,
             timerProgressBar: true,
-            didOpen: () => {
+            didOpen: async () => {
                 Swal.showLoading();
+                const result = await getUrl(id);
+
+                data = result;
             }
         }).then((result) => {
+            console.log('data', data);
             if (result.dismiss === Swal.DismissReason.timer) {
-                console.log("I was closed by the timer");
+                window.open(data.original, "_blank");
             }
         });
     }
