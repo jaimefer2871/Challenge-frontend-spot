@@ -58,9 +58,9 @@ function UrlShortenerMain() {
             confirmButtonText: "Yes, delete it!"
         }).then(async (result) => {
             if (result.isConfirmed) {
-                const response = await deleteUrl(id);
+                const response:any = await deleteUrl(id);
 
-                if (response.hasOwnProperty('wasDeleted') && response.wasDeleted == 1) {
+                if (Object.prototype.hasOwnProperty.call(response, 'wasDeleted') && response.wasDeleted == 1) {
                     Swal.fire({
                         title: "Deleted!",
                         text: "Your url has been deleted.",
@@ -74,27 +74,6 @@ function UrlShortenerMain() {
                         icon: "error"
                     });
                 }
-            }
-        });
-    }
-
-    const openModalUrl = (id: number) => {
-        let data: any = null;
-        MySwal.fire({
-            title: "Open Url",
-            text: "Begin open url",
-            timer: 3000,
-            timerProgressBar: true,
-            didOpen: async () => {
-                Swal.showLoading();
-                const result = await getUrl(id);
-
-                data = result;
-            }
-        }).then((result) => {
-            console.log('data', data);
-            if (result.dismiss === Swal.DismissReason.timer) {
-                window.open(data.original, "_blank");
             }
         });
     }

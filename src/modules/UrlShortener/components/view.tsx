@@ -8,7 +8,7 @@ function ViewUrlShortener() {
     const { code } = useParams();
 
     const init = async () => {
-        const data = await getUrlByCode(code);
+        const data:any = await getUrlByCode(code);
         setUrl(data.original);
     }
 
