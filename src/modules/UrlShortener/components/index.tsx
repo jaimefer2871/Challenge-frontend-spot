@@ -122,7 +122,7 @@ function UrlShortenerMain() {
                     }}><i className="bi bi-plus-circle-fill"></i></button>
                 <br />
                 <hr></hr>
-                <TableList data={listUrls} onClickDelete={openModalDelete} onClickOpenUrl={openModalUrl} />
+                <TableList data={listUrls} onClickDelete={openModalDelete} />
             </div>
         </Container>
     );

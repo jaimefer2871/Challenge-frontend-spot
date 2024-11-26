@@ -12,8 +12,8 @@ interface dataResponse {
     updated_at?: string
 }
 
-function TableList({ data, onClickDelete, onClickOpenUrl }: { data: Array<dataResponse>, onClickDelete: CallableFunction, onClickOpenUrl:CallableFunction }) {
-    let navigate = useNavigate();
+function TableList({ data, onClickDelete }: { data: Array<dataResponse>, onClickDelete: CallableFunction }) {
+    const navigate = useNavigate();
 
     return (
         <Table bordered hover>
