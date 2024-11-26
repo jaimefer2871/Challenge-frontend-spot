@@ -1,11 +1,12 @@
 import { createRoot } from 'react-dom/client'
-//import './index.css'
-//import App from './App.tsx'
-import UrlShortenerMain from './modules/UrlShortener/components/index.tsx'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import { BrowserRouter } from 'react-router-dom';
+import App from './App.tsx';
 
 createRoot(document.getElementById('root')!).render(
 
-  <UrlShortenerMain />
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>
 )

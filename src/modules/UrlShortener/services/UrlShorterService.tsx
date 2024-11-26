@@ -52,3 +52,15 @@ export const getUrl = async (id:number) => {
 
     return output;
 }
+
+export const getUrlByCode = async (code:any) => {
+    let output = [];
+    try {
+        const response = await axios.get(`urlshortener/url/${code}`);
+        output = response.data.data;
+    } catch (error) {
+        console.log('ErrorGetUrlCode', error)
+    }
+
+    return output;
+}

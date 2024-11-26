@@ -1,6 +1,8 @@
 import {
     Table,
 } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+
 
 interface dataResponse {
     id?: number,
@@ -11,7 +13,7 @@ interface dataResponse {
 }
 
 function TableList({ data, onClickDelete, onClickOpenUrl }: { data: Array<dataResponse>, onClickDelete: CallableFunction, onClickOpenUrl:CallableFunction }) {
-
+    let navigate = useNavigate();
 
     return (
         <Table bordered hover>
@@ -41,7 +43,7 @@ function TableList({ data, onClickDelete, onClickOpenUrl }: { data: Array<dataRe
                                     <td>
                                         <div className="btn-group" role="group">
                                             <button type="button" className="btn btn-primary btn-sm" onClick={() => {
-                                                onClickOpenUrl(item.id)
+                                                navigate(`/${item.shortened}`)
                                             }}><i className="bi bi-arrow-up-right-circle"></i></button>
                                             <button type="button" className="btn btn-danger btn-sm" onClick={() => {
                                                 onClickDelete(item.id)
