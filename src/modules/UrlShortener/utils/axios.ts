@@ -1,7 +1,9 @@
 import axios from 'axios';
 
+const urlEnv = process.env.REACT_APP_URL_BACKEND;
+
 const axiosInt = axios.create({
-    baseURL: "http://oficina.eserviciosat.net:7000/api/v1/",
+    baseURL: `${urlEnv}/api/v1/`,
     headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
